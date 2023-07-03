@@ -75,6 +75,11 @@ class PostController extends Controller
     public function destroy($post_id)
     {
         $post = Post::find($post_id);
+
+        if($post->image_url){
+            Storage::delete('public/'.$post->image_url);
+        }
+        
         $post->delete();
         return redirect()->route('posts.index');
     }

@@ -24,6 +24,12 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/', function () {
+    return view('allPosts', [
+        'posts' => Post::where('active', true)->get()
+    ]);
+})->name('home');
+
 // Private routes
 Route::get('/dashboard', function () {
     return view('dashboard');
